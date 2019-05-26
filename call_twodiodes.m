@@ -1,24 +1,16 @@
-function [T,U] = call_twodiodes(u1_0, u2_0, v, t0, tend,S,A,Tem,fi,fis,es, Na,Nd)
+function [T,U] = call_twodiodes(u1_0, u2_0, v, t0, tend,S,A,Tem,fi,fis,es, Na,Nd, thickness, mobility)
  tspan =[t0 tend];
 %  u1_0 = 0;
 %  u2_0 = 0;
 %  u3_0 = -1;
- options = odeset('OutputFcn',@myfun);
- [T,U] = ode45(@(T,U) twodiodes(T,U,v,S,A,Tem,fi,fis,es, Na,Nd),tspan,[u1_0 u2_0], options);
+ options = odeset('RelTol',1e-8,'AbsTol',1e-10,'OutputFcn',@myfun);
+ [T,U] = ode45(@(T,U) twodiodes(T,U,v,S,A,Tem,fi,fis,es, Na,Nd, thickness, mobility),tspan,[u1_0 u2_0], options);
  semilogx(T,U(:,1))
  hold on
  semilogx(T,U(:,2))
  hold off
 end
-% 1.1*10^-3:0.01:1  10^-4:10^-2:10^-1
-% [0:5*10^-10:10^-8 1.1*10^-8:8*10^-8:10^-6 1.1*10^-6:10^-5:10^-4 10^-4:10^-3:10^-2]
-%:tend/100:
-
-% function [value, isterminal, direction] = myEvent(T, U,v)
-% value      = ((U(2)) < (-0.99999));
-% isterminal = 1;   % Stop the integration
-% direction  = 0;
-% end
+% [T,U] = call_twodiodes(0,0,-1,0,1, 0.1,1.2*10^2,120,1,0.2,13*8.85*10^-14,8*10^14,10^18);
 
 
 function status = myfun(t,u,flag)
