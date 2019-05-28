@@ -7,11 +7,11 @@ syms S A Tem fi mobility Na Nd es x;
 jjs = S*A*Tem^2*exp(-fi/(0.0000862*Tem));
 Jp  = jjs*(exp(x/(0.0000862*Tem)) - 1);
 
-resistance_j = diff(Jp,x)
+resistance_j = diff(Jp,x)^-1;
 
 Js_diff  = S*(1.6*10^-19)^2*Nv(Tem)*mobility*Na*Ws(x, Na,Nd,fis,es)*exp(-fis/(0.0000862*Tem)).*(exp(x/(0.0000862*Tem))-1)/es;
 
-resistance_sch = diff(Js_diff,x)
+resistance_sch = diff(Js_diff,x)^-1;
 
 
 function susceptance=susceptance(Cbc,Cj,Rbc,Rj,Rn,omega)

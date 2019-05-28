@@ -16,12 +16,12 @@ fun1 = @(a) Jp(a*v, S,A,Tem,fi);
 fun2 = @(b) -Js_diff(-b*v,S,Tem,fis,Na,Nd,es, mobility);
 fun3 = @(a,b,c) c*v/Resistance(a*v,b*v,thickness,S,fis,fi,Na,Nd,es,mobility);
 
-% F = [ fun1(x(1)) - fun2(x(2));
-%       fun1(x(1)) - fun3(x(1),x(2),x(3));
-%       x(1)+x(2)+x(3)-1];
-
-
-F = [ log(fun1(x(1))) - log(fun2(x(2)));
-      log(fun1(x(1))) - log(fun3(x(1),x(2),x(3)));
+F = [ 10^10*(fun1(x(1)) - fun2(x(2)));
+      10^10*(fun1(x(1)) - fun3(x(1),x(2),x(3)));
       x(1)+x(2)+x(3)-1];
- 
+
+
+% F = [ log(fun1(x(1))) - log(fun2(x(2)));
+%       log(fun1(x(1))) - log(fun3(x(1),x(2),x(3)));
+%       x(1)+x(2)+x(3)-1];
+%  
