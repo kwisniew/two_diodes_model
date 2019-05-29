@@ -1,4 +1,3 @@
-
 function [x,fval]=divide_potential(parts)
 
 x0 = [parts(1);parts(2);parts(3)];
